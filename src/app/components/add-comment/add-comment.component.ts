@@ -19,9 +19,9 @@ export class AddCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.change.subscribe((result) => {
-      console.log(result);
+      // console.log(result);
       this.idPost = result;
-      console.log(this.idPost);
+      // console.log(this.idPost);
 
     });
   }
@@ -32,8 +32,9 @@ export class AddCommentComponent implements OnInit {
       this.postService
         .commentOnPost(this.idPost, this.commenting)
         .subscribe((result) => {
-          console.log(result);
-          console.log(this.idPost);
+          result
+          // console.log(result);
+          // console.log(this.idPost);
         });
       this.dialogRef.close(); // this.postService.commentOnPost()
     }

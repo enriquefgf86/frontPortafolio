@@ -9,6 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class PdfViewerComponent implements OnInit {
   pdf: any;
+  loader:boolean;
+
 
   constructor(
     private storage: AngularFireStorage,
@@ -16,12 +18,18 @@ export class PdfViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.loader=true;
+
     this.storage
       .ref('pdf')
       .child('pdf')
       .getDownloadURL()
       .subscribe((result) => {
-        console.log(result);
+        // console.log(result);
+        if(result){
+          this.loader=false;
+        }
 
         this.pdf = this.sanitizer.bypassSecurityTrustResourceUrl(result);
       });

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponentComponent implements OnInit {
   userIsLogged:boolean;
-  
+
   public loginForm = this.formbuilder.group({
     //Inicializando el form builder para el sign up
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,9 +32,9 @@ export class LoginComponentComponent implements OnInit {
       return;
     } else {
       this.authService.signIn(this.loginForm.value).subscribe((result) => {
-        console.log(result);
+        // console.log(result);
         if (result.error) {
-          console.log('Sorry something went wrong ');
+          // console.log('Sorry something went wrong ');
           this.authService.emittingAuthState(this.userIsLogged=false)
         } else {
           this.authService.emittingAuthState(this.userIsLogged=true)

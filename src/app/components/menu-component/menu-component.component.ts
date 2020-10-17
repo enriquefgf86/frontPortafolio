@@ -37,20 +37,20 @@ export class MenuComponentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.searchParam);
-    console.log(this.child);
-    console.log(this.router.url);
+    // console.log(this.searchParam);
+    // console.log(this.child);
+    // console.log(this.router.url);
     // this.authService.isUserLoggedIn();
     // this.userIsAuth = this.authService.isUserLoggedIn().valueOf();
-    console.log(this.userIsAuth);
+    // console.log(this.userIsAuth);
     this.authService.authDetection.subscribe(async (result) => {
-      console.log(result);
+      // console.log(result);
       this.userIsAuth = await result;
       this.newPost = await result;
       this.pdfUpload = await result;
       console.log(this.userIsAuth);
     });
-    console.log(this.userIsAuth);
+    // console.log(this.userIsAuth);
 
     if (!this.userIsAuth) {
       // this.newPost = false;
@@ -143,9 +143,9 @@ export class MenuComponentComponent implements OnInit {
     await this.authService.logOut();
     this.authService.emittingAuthState((this.forLogOut = false));
     this.authService.authDetection.subscribe((result) => {
-      console.log(result);
+      // console.log(result);
       this.userIsAuth = result;
-      console.log(this.userIsAuth);
+      // console.log(this.userIsAuth);
     });
     this.routerMethod();
   }
@@ -155,7 +155,7 @@ export class MenuComponentComponent implements OnInit {
   }
 
   async search(search: string) {
-    console.log(search);
+    // console.log(search);
     this.searchParam = await search;
 
     if (this.router.url != '') {

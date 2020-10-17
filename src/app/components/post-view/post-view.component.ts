@@ -35,12 +35,12 @@ export class PostViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.show);
+    //console.log(this.show);
 
     this.idOfPost = this.urlRoute.snapshot.params['idPostView'];
 
     this.postService.getAPost(this.idOfPost).subscribe(async(result: any) => {
-      console.log(result);
+      //console.log(result);
       this.postSelected = result;
       for (let i = 0; i < result.videos.length; i++) {
         this.fireStorage
@@ -48,10 +48,10 @@ export class PostViewComponent implements OnInit {
           .child(`${this.postSelected.text}-${result.id}-${i}`)
           .getDownloadURL()
           .subscribe((allVideos) => {
-            console.log(allVideos);
+            //console.log(allVideos);
 
             this.videos.push(allVideos);
-            console.log(this.videos);
+            //console.log(this.videos);
           });
       }
       for (let i = 0; i < result.images.length; i++) {
@@ -60,17 +60,17 @@ export class PostViewComponent implements OnInit {
           .child(`${this.postSelected.text}-${result.id}-${i}`)
           .getDownloadURL()
           .subscribe((allImages) => {
-            console.log(allImages);
+            //console.log(allImages);
 
             this.images.push(allImages);
-            console.log(this.images);
+            //console.log(this.images);
           });
       }
       let objectIdImages=new Object();
       let images=this.images;
       let idPost=this.idOfPost;
       objectIdImages={images,idPost}
-      console.log(this.images,this.idOfPost);
+      //console.log(this.images,this.idOfPost);
 
 
     });
@@ -95,11 +95,11 @@ export class PostViewComponent implements OnInit {
     this.postService
       .commentOnPost(this.idOfPost, data)
       .subscribe(async (result) => {
-        console.log(result);
+        //console.log(result);
         await await this.postService
           .getAPost(this.idOfPost)
           .subscribe((result: any) => {
-            console.log(result);
+            //console.log(result);
 
             this.postSelected = result;
             this.scrollToElement();

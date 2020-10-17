@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.isShow);
+    //console.log(this.isShow);
   }
   goToPdf() {
     this.routes.navigate(['/pdf-viewer']);
   }
-  
+
   goToMe() {
     this.routes.navigate(['/boutme']);
   }

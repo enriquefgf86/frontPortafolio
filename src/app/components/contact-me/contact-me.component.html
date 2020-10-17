@@ -1,6 +1,6 @@
 <div class="container">
   <img src="../../../assets/goBack.png" style="width:37px;height:37px;margin-top:1rem" routerLink="/" alt="back">
-  <h2 class="text-center mb-5"> Contact Form </h2>
+  <h2 class="text-center mb-5" id="titler"> Contact Form </h2>
   <div class="row">
   <div class="col-md-6 offset-md-3">
   <form [formGroup]="contactForm" ><div class="form-group">
@@ -18,7 +18,7 @@
   </textarea>
   </div>
   <!-- <button (click)="onSubmit()" class="btn btn-primary" [disabled]="!contactForm.valid">Submit</button> -->
-  
+
   <button mat-raised-button color="warn"  (click)="onSubmit()" [disabled]="!contactForm.valid">Send
     </button>
 </form>

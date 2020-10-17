@@ -28,7 +28,7 @@ export class SignupComponentComponent implements OnInit {
 
   createUser() {
     if (this.registerForm.invalid) {
-      // console.log('Error on Registering Form');
+      // //console.log('Error on Registering Form');
       return;
     } else {
       const data: SignInModel = {
@@ -39,14 +39,14 @@ export class SignupComponentComponent implements OnInit {
       this.authService
         .signUp(this.registerForm.value)
         .subscribe((response: any) => {
-          console.log(response);
+          //console.log(response);
           if (response.error) {
-            console.log('Sorry something went wrong ');
+            //console.log('Sorry something went wrong ');
           } else {
-            console.log('user created');
+            //console.log('user created');
             this.authService.signIn(data).subscribe((result) => {
-              console.log(result);
-              console.log('token placed');
+              //console.log(result);
+              //console.log('token placed');
             });
             this.routerMethod();
           }

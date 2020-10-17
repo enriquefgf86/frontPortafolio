@@ -63,11 +63,11 @@ export class ContactMeComponent implements OnInit {
     };
     this.postService.sendContactFormToMyMail(string).subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
         location.href = 'https://mailthis.to/confirm';
       },
       (error) => {
-        console.log({ error });
+        // console.log({ error });
       }
     );
   }

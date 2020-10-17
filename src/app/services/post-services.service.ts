@@ -28,7 +28,7 @@ export class PostServicesService {
     return this.http.post(myMail, form, { responseType: 'text' }).pipe(
       map((response) => {
         if (response) {
-          console.log(response);
+          //console.log(response);
           return response;
         } else {
           (error: any) => {
@@ -73,7 +73,7 @@ export class PostServicesService {
   async imagesFromParent(images: string[], id: string) {
     let object = await new Object();
     object = await { images, id };
-    console.log(object);
+    //console.log(object);
 
     await this.imagesCarousel.emit(object);
   }

@@ -43,13 +43,13 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.initPostForm();
-    console.log(this.input.nativeElement.files.name);
-    console.log(this.imgsSelected);
+    //console.log(this.input.nativeElement.files.name);
+    //console.log(this.imgsSelected);
   }
 
   async selectImgs(event: any) {
     if (event.target.files && event.target.files[0]) {
-      console.log(event.target.files);
+      //console.log(event.target.files);
 
       let filesImageAmmount = event.target.files.length;
       for (let i = 0; i < filesImageAmmount; i++) {
@@ -72,7 +72,7 @@ export class PostComponent implements OnInit {
       for (let i = 0; i < filesVideosAmmount; i++) {
         const imageReader = new FileReader();
         imageReader.onload = async (videoCharger: any) => {
-          console.log(videoCharger.target.result);
+          //console.log(videoCharger.target.result);
           this.arrayVideos.push(videoCharger.target.result); //Para Guardar en Firebase
           this.arrayVideosMongoDb.push(
             videoCharger.target.result.split(',')[1].slice(0, 15)
@@ -121,7 +121,7 @@ export class PostComponent implements OnInit {
     await this.postService
       .createNewPost(this.postToCreate)
       .subscribe(async (result: any) => {
-        console.log('post created ', result);
+        //console.log('post created ', result);
         if (!result.error) {
           this.router.navigate(['/']);
 
@@ -151,7 +151,7 @@ export class PostComponent implements OnInit {
                     )
                     .getDownloadURL()
                     .subscribe((urlVideo) => {
-                      console.log(urlVideo);
+                      //console.log(urlVideo);
                       this.postCreation.value.videosPost = urlVideo;
                     });
                 })
@@ -181,7 +181,7 @@ export class PostComponent implements OnInit {
                     )
                     .getDownloadURL()
                     .subscribe((urlImg) => {
-                      console.log(urlImg);
+                      //console.log(urlImg);
                       this.postCreation.value.imagesPost = urlImg;
                     });
                 })

@@ -25,15 +25,15 @@ export class PdfUploaderComponent implements OnInit {
 
   initPdfForm() {
     this.pdfUpLoader = this.formBuilder.group({
-     
+
       pdf: new FormControl('', Validators.compose([Validators.required])),
-      
+
     });
   }
 
   setPDF() {
     this.pdfToCreate.pdf= this.pdfUpLoader.get('pdf').value;
-    
+
   }
 
   pdfSelect(event) {
@@ -42,9 +42,9 @@ export class PdfUploaderComponent implements OnInit {
       for (let i = 0; i < filesPDFAmmount; i++) {
         const pdfReader = new FileReader();
         pdfReader.onload = async (pdfCharger: any) => {
-          console.log(pdfCharger.target.result);
+          // console.log(pdfCharger.target.result);
           this.arrayPdf.push(pdfCharger.target.result); //Para Guardar en Firebase
-          
+
           this.pdfUpLoader.patchValue({ videosPost: this.arrayPdf }); //Slavando part del string en mongo
         };
         pdfReader.readAsDataURL(event.target.files[i]);
@@ -75,7 +75,7 @@ export class PdfUploaderComponent implements OnInit {
                     )
                     .getDownloadURL()
                     .subscribe((urlPdf) => {
-                      console.log(urlPdf);
+                      // console.log(urlPdf);
                       this.pdfUpLoader.value.videosPost = urlPdf;
                     });
                 })

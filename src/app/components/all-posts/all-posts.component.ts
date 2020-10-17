@@ -26,6 +26,7 @@ export class AllPostsComponent implements OnInit {
   allVideoPresentation: any[] = [];
   up: boolean[] = [];
   isAuth: boolean;
+  loader:boolean;
 
   constructor(
     private postService: PostServicesService,
@@ -44,6 +45,7 @@ export class AllPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAuth = this.authService.isUserLoggedIn().valueOf();
+    this.loader=true;
 
     this.authService.authDetection.subscribe((result) => {
       this.isAuth = result;
@@ -61,11 +63,14 @@ export class AllPostsComponent implements OnInit {
     // }
 
     this.postService.getAllPosts().subscribe(async (result: any) => {
-      console.log(result);
+      // console.log(result);
+      if(result){
+        this.loader=false
+      }
 
       await this.postService.changeWord.subscribe((search) => {
         //especificandose si no hay ningun proceso de busqueda pendientw
-        console.log(search);
+        // console.log(search);
         if (search) {
           this.postService
             .searchAPost(search)
@@ -82,7 +87,7 @@ export class AllPostsComponent implements OnInit {
         var videosLoop = result[x];
         // console.log(videosLoop);
         if (videosLoop.videos == null) {
-          console.log('no videos');
+          // console.log('no videos');
         } else {
           this.allVideoPresentation.push(videosLoop.videos[0]);
           for (let i = 0; i < videosLoop.videos.length; i++) {
@@ -107,7 +112,7 @@ export class AllPostsComponent implements OnInit {
         var imagesLoop = result[x];
         // console.log(imagesLoop);
         if (imagesLoop.images == null) {
-          console.log('no images');
+          // console.log('no images');
         } else {
           for (let i = 0; i < imagesLoop.images.length; i++) {
             // if (!cube.images) {
@@ -135,10 +140,10 @@ export class AllPostsComponent implements OnInit {
   }
 
   async delete(postId: string) {
-    console.log(postId);
+    // console.log(postId);
     await this.postService.deleteAPost(postId).subscribe((result) => {
-      console.log('post deleted');
-      console.log(result);
+      // console.log('post deleted');
+      // console.log(result);
       location.reload();
       // for (let x = 0; x < result.videos.length; x++) {
       //   this.fireStorage
