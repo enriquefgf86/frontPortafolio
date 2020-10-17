@@ -1,0 +1,19 @@
+#angularLaid{
+  position:relative;
+  width:40px;
+  height:35px;
+  margin-left:-.8rem;
+}
+
+#fireLaid{
+  position:relative;
+  width:40px;
+  height:35px;
+  margin-left:-.8rem;
+  margin-top:-.3rem;
+}
+
+.list {
+  list-style:disc outside none;
+  display:list-item; 
+  }

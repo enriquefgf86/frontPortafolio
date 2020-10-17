@@ -1,0 +1,263 @@
+<div class="container">
+  <img src="../../../assets/goBack.png" style="width:37px;height:37px;margin-top:1rem" routerLink="/" alt="back">
+
+  <div class="row">
+
+    <div class="col-lg-12 sm-12" *ngIf="postSelected">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg12 sm-12 md-12">
+
+            <h2> {{postSelected.name}} </h2>
+            <div class="d-flex flex-row justify-content-around">
+
+              <div>
+
+                <button mat-raised-button color="primary" data-toggle="modal" data-target="#exampleModal">
+                  Add Comment
+                </button>
+
+                <img *ngIf="postSelected.allComments" (click)="show=!show" src="../../../assets/comment.png"
+                  alt="comment" id="commentImage">
+
+              </div>
+
+              <div>
+
+                <button mat-raised-button color="primary" type="button" data-toggle="modal"
+                  data-target="#exampleModalLong">
+                  Description <img src="../../../assets/arrowDown.png" id="arrowDown" alt="arrow">
+                </button>
+
+              </div>
+
+            </div>
+
+            <div id="cardContainer">
+
+              <mat-card *ngIf="show" class="example-card" #cardComments id="cardComments">
+
+                <mat-list>
+
+                  <div mat-subheader>Comments on
+                    Project({{postSelected.allComments.length>0?postSelected.allComments.length:"no comments"}})</div>
+
+                  <div class="container">
+
+                    <div class="row" id="commentOverflow" #scrollTop>
+
+                      <mat-list-item *ngFor="let comment of postSelected.allComments" id="commentOverflow1"  >
+
+                        <div class="container" >
+                          <mat-icon mat-list-icon>comment</mat-icon>
+                          <div mat-line><strong>{{comment.name}} said:</strong></div>
+                          <div mat-line> {{comment.releaseDate | date}} </div>
+                          <div mat-line   > {{comment.comments}} </div>
+                          <mat-divider></mat-divider>
+                        </div>
+
+                      </mat-list-item>
+
+                      <mat-divider></mat-divider>
+
+                    </div>
+
+                  </div>
+
+                  <mat-divider></mat-divider>
+                </mat-list>
+
+              </mat-card>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6 sm-12 md-6">
+
+            <div class="container d-flex flex-column align-items-center  justify-content-space-between">
+
+              <ngb-carousel id="carouselContainer" *ngIf="images" style="width:400px;
+              height:300px;box-shadow:3px 4px 5px 5px;border-radius:10px">
+                <ng-template ngbSlide *ngFor="let image of images">
+
+                  <img id="imageCarousel" style="width:400px;
+                  height:300px;border-radius:10px" [src]="image" alt="Random slide">
+
+                </ng-template>
+              </ngb-carousel>
+
+              <button class="mt-4 mb-4" mat-raised-button color="primary" data-target="#bigCarousel"
+                data-toggle="modal">See Full Screen
+                Images
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- ===============Modal======================================================== -->
+
+          <div class="modal fade" id="bigCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+
+            <div class="modal-dialog" id="modal-dialog" role="document">
+
+              <div class="modal-content" id="modal-content">
+
+                <div class="modal-header" id="modal-header">
+
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+
+                </div>
+
+                <div class="modal-body" id="modal-body">
+
+                  <ngb-carousel id="carouselContainer" *ngIf="images" style="width:90vw;height:90vh">
+                    <ng-template ngbSlide *ngFor="let image of images">
+
+                      <img id="imageCarousel" style="width:90vw; height:90vh" [src]="image" alt="Random slide">
+
+                    </ng-template>
+
+                  </ngb-carousel>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <!-- ====================================================================== -->
+
+
+
+          <div class="col-lg-6 sm-12 md-6 ">
+            <div class="container">
+              <ngb-carousel data-interval="false" *ngIf="videos" style="width:400px;
+              height:300px;box-shadow:3px 4px 5px 5px;border-radius:10px">
+                <ng-template ngbSlide *ngFor="let video of videos" data-interval="false">
+                  <div class="container d-flex justify-content-center">
+
+                    <video [src]="video" controls muted=false style="width:400px;
+                      height:300px;border-radius:10px;z-index:2;padding-bottom:15px">
+                      Your browser does not support the video tag.
+                    </video>
+
+                  </div>
+
+                </ng-template>
+              </ngb-carousel>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-lg-12 md-12 sm-12 xs-12 mt-5">
+            <mat-accordion id="acordion">
+
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <strong>
+                      <h5>Description of project </h5>
+                    </strong>
+                  </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <div>{{postSelected.description}}</div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+
+          <div class="modal-content">
+
+            <div class="modal-header">
+
+              <h5 class="modal-title" id="exampleModalLongTitle">{{postSelected.name}}</h5>
+
+              <button class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+            </div>
+
+            <div class="modal-body">
+              <p>{{postSelected.description}}</p>
+            </div>
+
+            <div class="modal-footer">
+
+              <button mat-raised-button color="primary" type="button" data-dismiss="modal">Close</button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+
+          <div class="modal-content">
+
+            <div class="modal-header">
+
+              <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
+
+            </div>
+
+            <div class="modal-body">
+              <input type="text" [(ngModel)]="nameCommenter" placeholder="Your name?">
+            </div>
+
+            <div class="modal-body">
+              <textarea type="text" [(ngModel)]="comment" placeholder="write your comment here"></textarea>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button mat-raised-button color="primary" type="button" (click)="addComment()" data-dismiss="modal" class="btn btn-primary">Add
+                Comment</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Modal -->
+
+    </div>
+
+  </div>
+
+</div>

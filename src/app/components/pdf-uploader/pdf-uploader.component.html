@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>New Post</h1>
+      <form [formGroup]="pdfUpLoader">
+       
+
+        <div class="form-group">
+          <!-- <label>Upload Images</label>
+          <input multiple="true" type="file" id="imagesPost" class="form-control-file" id="exampleFormControlFile1"
+            #imagesUpload (change)="selectImgs($event) " accept="image/png, image/jpeg,image/jpg,image/JPG,image/gif">
+         -->
+            <!-- <button mat-raised-button color="warn" type="button" (click)="imagesUpload.click()">
+              Select File
+            </button> -->
+            <!-- <span>{{arrayImgMongoDb.length>0?"   "+ arrayImgMongoDb.length+" files":" No File Selected"}}</span> -->
+            <input multiple="true" type="file" id="pdf" class="form-control-file" formControlName="pdf" id="exampleFormControlFile1"
+            (change)="pdfSelect($event) " 
+               />
+        
+          </div>
+
+        <div class="form-group">
+          <!-- <label>Upload Videos</label> -->
+          <!-- <input multiple="true" type="file" id="videosPost" class="form-control-file" #videossUpload
+            (change)="selectVideos($event)" id="exampleFormControlFile1" accept="video/mp4,video/x-m4v,video/*"> -->
+          
+
+        </div>
+       
+        <button mat-raised-button color="warn" id="createPostButton" (click)="uploadPDF()" [disabled]="!pdfUpLoader.valid">Create New
+          Post</button>
+      </form>
+
+    </div>
+  </div>
+</div>

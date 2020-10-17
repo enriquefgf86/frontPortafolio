@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>New Post</h1>
+      <form [formGroup]="postCreation">
+        <div class="form-group">
+          <label for="namePost">Name of Post</label>
+          <input type="text" formControlName="namePost" class="form-control" id="namePost" placeholder="Name of Post">
+          <small id="namePost" class="form-text  text-muted">Write the Post Name</small>
+        </div>
+
+        <div class="form-group">
+          <label for="">Released By </label>
+          <input type="text" formControlName="textPost" class="form-control" id="textPost"
+            placeholder="Name of Post Author">
+          <small id="textPost" class="form-text  text-muted">Write the Post Author's Name</small>
+        </div>
+
+        <div class="form-group">
+          <label for="">Languages,Frameworks,Technologies </label>
+          <input type="text" formControlName="techPost" class="form-control" id="techPost"
+            placeholder="Languages,Frameworks,Technologies used ">
+          <small id="techPost" class="form-text  text-muted">Write Languages Used</small>
+        </div>
+
+        <div class="form-group">
+          <label for="descriptionPost">Description</label>
+          <textarea type="text" class="form-control" formControlName="descriptionPost" id="descriptionPost"
+            placeholder="Description for Post"></textarea>
+          <small id="namePost" class="form-text  text-muted">Write the Post Description</small>
+        </div>
+
+        <div class="form-group">
+          <!-- <label>Upload Images</label>
+          <input multiple="true" type="file" id="imagesPost" class="form-control-file" id="exampleFormControlFile1"
+            #imagesUpload (change)="selectImgs($event) " accept="image/png, image/jpeg,image/jpg,image/JPG,image/gif">
+         -->
+            <button mat-raised-button color="warn" type="button" (click)="imagesUpload.click()">
+              Select images
+            </button>
+            <span>{{arrayImgMongoDb.length>0?"   "+ arrayImgMongoDb.length+" files":" No File Selected"}}</span>
+            <input multiple="true" type="file" id="imagesPost" class="form-control-file" id="exampleFormControlFile1"
+            #imagesUpload (change)="selectImgs($event) " accept="image/png, image/jpeg,image/jpg,image/JPG,image/gif"
+              style="display:none;" />
+
+          </div>
+
+        <div class="form-group">
+          <!-- <label>Upload Videos</label> -->
+          <!-- <input multiple="true" type="file" id="videosPost" class="form-control-file" #videossUpload
+            (change)="selectVideos($event)" id="exampleFormControlFile1" accept="video/mp4,video/x-m4v,video/*"> -->
+          <button mat-raised-button color="warn" type="button" (click)="videossUpload.click()">
+            Select Videos
+          </button>
+
+          <span>{{arrayVideosMongoDb.length>0?"   "+ arrayVideosMongoDb.length+" files":" No File Selected"}}</span>
+          <input multiple="true" type="file" id="videosPost" class="form-control-file" #videossUpload
+            (change)="selectVideos($event)" id="exampleFormControlFile1" accept="video/mp4,video/x-m4v,video/*"
+            style="display:none;" />
+
+        </div>
+
+        <button mat-raised-button color="warn" id="createPostButton" (click)="createPost()" [disabled]="!postCreation.valid">Create New
+          Post</button>
+      </form>
+
+    </div>
+  </div>
+</div>

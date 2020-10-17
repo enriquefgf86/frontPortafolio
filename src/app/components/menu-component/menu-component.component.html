@@ -1,0 +1,79 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navmenu">
+    <div style="color:transparent">Aqui de nuevo</div>
+
+    <button id="appLogo" mat-button color="primary" [routerLink]="['/home']" routerLinkActive="router-link-active">
+      Home</button>
+
+
+    <button mat-mini-fab color="primary" class="d-lg-none" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-label="Example icon button with a menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item" *ngIf="newPost">
+          <button mat-button color="primary" [routerLink]="['/post']" routerLinkActive="router-link-active">New
+            Post</button>
+          <!-- <a class="nav-link" [routerLink]="['/post']" routerLinkActive="router-link-active" >New Post</a> -->
+        </li>
+
+        <li class="nav-item " *ngIf="contactMe">
+
+          <button mat-button color="primary" class="dropdown-item" [routerLink]="['/contact-form']">Contact Me </button>
+        </li>
+
+        <li class="nav-item " *ngIf="showPortafolio">
+          <button mat-button color="primary" class="dropdown-item" [routerLink]="['/']">Portafolio </button>
+        </li>
+
+        <li class="nav-item " *ngIf="pdfUpload">
+          <button mat-button color="primary" class="dropdown-item" [routerLink]="['/pdf']" href="#">PDF upload </button>
+
+        </li>
+        <li class="nav-item" *ngIf="myCv">
+          <button mat-button color="primary" class="dropdown-item" [routerLink]="['/pdf-viewer']" href="#">My CV
+          </button>
+        </li>
+
+        <li class="nav-item" *ngIf="boutMe">
+          <button mat-button color="primary" class="dropdown-item" [routerLink]="['/boutme']" href="#">About Me
+          </button>
+        </li>
+
+        <li class="nav-item" *ngIf="boutSite">
+          <button mat-button color="primary" class="dropdown-item" [routerLink]="['/boutsite']" href="#">About This Site
+          </button>
+        </li>
+
+        <li class="nav-item" *ngIf="userIsAuth">
+          <button mat-button color="primary" class="dropdown-item" (click)="logOut()" href="#">Log Out</button>
+        </li>
+
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+
+        <input #searchWord class="form-control searchInput mr-sm-2" placeholder="Project,Language.."
+          aria-label="Search">
+
+        <i class="fa fa-times fa-1x" aria-hidden="true" style="position:relative;margin-left:-10%;" role="button"
+          *ngIf="searchWord.value!=''" (click)="clearAllSearch()">
+        </i>
+
+        <button mat-button id="searchButton" color="primary" (click)="search(searchWord.value)" class="dropdown-item">
+          Search
+        </button>
+
+      </form>
+
+
+
+
+    </div>
+  </nav>
+
+</div>

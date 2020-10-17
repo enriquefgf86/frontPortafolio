@@ -1,0 +1,66 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+#modal-dialog {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+#modal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: none;
+}
+#modal-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    box-shadow: none;
+    width:100vw;
+    height:100vh
+}
+#modal-body {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    font-size: 15px;
+    overflow: auto;
+    margin-bottom: 60px;
+    padding: 0 15px 0;
+    width: 100%;
+}
+#modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    padding: 10px;
+    background: #f1f3f5;
+}
+
+
+
+
+

@@ -1,0 +1,17 @@
+#navmenu {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+}
+
+@media (max-width: 991px) {
+  #navmenu {
+    position: sticky;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1001;
+  }
+}
