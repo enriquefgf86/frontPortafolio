@@ -49,13 +49,13 @@
 
                     <div class="row" id="commentOverflow" #scrollTop>
 
-                      <mat-list-item *ngFor="let comment of postSelected.allComments" id="commentOverflow1"  >
+                      <mat-list-item *ngFor="let comment of postSelected.allComments" id="commentOverflow1">
 
-                        <div class="container" >
+                        <div class="container">
                           <mat-icon mat-list-icon>comment</mat-icon>
                           <div mat-line><strong>{{comment.name}} said:</strong></div>
                           <div mat-line> {{comment.releaseDate | date}} </div>
-                          <div mat-line   > {{comment.comments}} </div>
+                          <div mat-line> {{comment.comments}} </div>
                           <mat-divider></mat-divider>
                         </div>
 
@@ -88,12 +88,10 @@
 
             <div class="container d-flex flex-column align-items-center  justify-content-space-between">
 
-              <ngb-carousel id="carouselContainer" *ngIf="images" style="width:400px;
-              height:300px;box-shadow:3px 4px 5px 5px;border-radius:10px">
+              <ngb-carousel id="carouselContainer" *ngIf="images">
                 <ng-template ngbSlide *ngFor="let image of images">
 
-                  <img id="imageCarousel" style="width:400px;
-                  height:300px;border-radius:10px" [src]="image" alt="Random slide">
+                  <img id="imageCarousel" [src]="image" alt="Random slide">
 
                 </ng-template>
               </ngb-carousel>
@@ -149,13 +147,11 @@
 
           <div class="col-lg-6 sm-12 md-6 ">
             <div class="container">
-              <ngb-carousel data-interval="false" *ngIf="videos" style="width:400px;
-              height:300px;box-shadow:3px 4px 5px 5px;border-radius:10px">
+              <ngb-carousel data-interval="false" id="carouselVideoContainer" *ngIf="videos">
                 <ng-template ngbSlide *ngFor="let video of videos" data-interval="false">
                   <div class="container d-flex justify-content-center">
 
-                    <video [src]="video" controls muted=false style="width:400px;
-                      height:300px;border-radius:10px;z-index:2;padding-bottom:15px">
+                    <video [src]="video" id="videoCarousel" controls muted=false>
                       Your browser does not support the video tag.
                     </video>
 
@@ -245,7 +241,8 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button mat-raised-button color="primary" type="button" (click)="addComment()" data-dismiss="modal" class="btn btn-primary">Add
+              <button mat-raised-button color="primary" type="button" (click)="addComment()" data-dismiss="modal"
+                class="btn btn-primary">Add
                 Comment</button>
             </div>
 
@@ -256,6 +253,12 @@
       </div>
       <!-- Modal -->
 
+    </div>
+    <div class="row" *ngIf="loader">
+      <div class="spinner-border" style="width: 8rem; height: 8rem;margin-top:20%;position:absolute;margin-left:45%"
+        role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
 
   </div>

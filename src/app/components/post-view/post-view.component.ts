@@ -24,6 +24,7 @@ export class PostViewComponent implements OnInit {
   videos: string[] = [];
   images: string[] = [];
   show:boolean=false;
+  loader:boolean;
   panelOpenState = false;
 
   constructor(
@@ -36,10 +37,14 @@ export class PostViewComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.show);
+    this.loader = true;
 
     this.idOfPost = this.urlRoute.snapshot.params['idPostView'];
 
     this.postService.getAPost(this.idOfPost).subscribe(async(result: any) => {
+      if (result) {
+        this.loader = false;
+      }
       //console.log(result);
       this.postSelected = result;
       for (let i = 0; i < result.videos.length; i++) {

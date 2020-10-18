@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { AuthServicesService } from './../../services/auth-services.service';
 import { PostServicesService } from './../../services/post-services.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -26,7 +27,7 @@ export class AllPostsComponent implements OnInit {
   allVideoPresentation: any[] = [];
   up: boolean[] = [];
   isAuth: boolean;
-  loader:boolean;
+  loader: boolean;
 
   constructor(
     private postService: PostServicesService,
@@ -45,7 +46,7 @@ export class AllPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAuth = this.authService.isUserLoggedIn().valueOf();
-    this.loader=true;
+    this.loader = true;
 
     this.authService.authDetection.subscribe((result) => {
       this.isAuth = result;
@@ -64,8 +65,8 @@ export class AllPostsComponent implements OnInit {
 
     this.postService.getAllPosts().subscribe(async (result: any) => {
       // console.log(result);
-      if(result){
-        this.loader=false
+      if (result) {
+        this.loader = false;
       }
 
       await this.postService.changeWord.subscribe((search) => {
@@ -90,18 +91,26 @@ export class AllPostsComponent implements OnInit {
           // console.log('no videos');
         } else {
           this.allVideoPresentation.push(videosLoop.videos[0]);
+
           for (let i = 0; i < videosLoop.videos.length; i++) {
             this.fireStorage
               .ref('videos/' + result[x].id)
               .child(`${result[x].text}-${result[x].id}-${i}`)
               .getDownloadURL()
-              .subscribe((allVideos) => {
+              .toPromise()
+              .then((allVideos) => {
                 // console.log(allVideos);
 
                 this.arrayOfVideos.push(
                   (object = { video: allVideos, id: result[x].id })
                 );
                 // console.log(this.arrayOfVideos);
+              })
+              .catch((err) => {
+                // console.log(err.code);
+                if (err.code == 'storage/quota-exceeded') {
+                  this.routes.navigate(['/quota-exceeded']);
+                }
               });
           }
         }
@@ -115,35 +124,43 @@ export class AllPostsComponent implements OnInit {
           // console.log('no images');
         } else {
           for (let i = 0; i < imagesLoop.images.length; i++) {
-            // if (!cube.images) {
-            //   console.log('ther is no video');
-            // }
             this.fireStorage
               .ref('images/' + result[x].id)
               .child(`${result[x].text}-${result[x].id}-${i}`)
               .getDownloadURL()
-              .subscribe((allImages) => {
+              .toPromise()
+              .then((allImages) => {
                 // console.log(allImages);
 
                 this.arrayOfImages.push(
                   (object = { image: allImages, id: result[x].id })
                 );
                 // console.log(this.arrayOfImages);
+              })
+              .catch((err) => {
+                // console.log(err.code);
+                if (err.code == 'storage/quota-exceeded') {
+                  this.routes.navigate(['/quota-exceeded']);
+                }
               });
+            // .subscribe((allImages) => {
+            //   console.log(result[x].id);
+
+            //   this.arrayOfImages.push(
+            //     (object = { image: allImages, id: result[x].id })
+            //   );
+            //   // console.log(this.arrayOfImages);
+            // });
           }
           this.randomNumber =
             Math.floor(Math.random() * this.arrayOfImages.length) + 0;
-          // console.log(this.randomNumber);
         }
       }
     });
   }
 
   async delete(postId: string) {
-    // console.log(postId);
     await this.postService.deleteAPost(postId).subscribe((result) => {
-      // console.log('post deleted');
-      // console.log(result);
       location.reload();
       // for (let x = 0; x < result.videos.length; x++) {
       //   this.fireStorage

@@ -1,3 +1,4 @@
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { AboutWebsiteComponent } from './about-website/about-website.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
@@ -32,6 +33,10 @@ const components_routes: Routes = [
       {
         path: 'boutme',
         component: AboutMeComponent,
+      },
+      {
+        path: 'quota-exceeded',
+        component: ErrorPageComponent,
       },
       {
         path: 'boutsite',

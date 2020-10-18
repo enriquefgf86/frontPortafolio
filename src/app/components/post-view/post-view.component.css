@@ -8,59 +8,89 @@
 }
 
 #modal {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
 }
 #modal-dialog {
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 #modal-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: none;
 }
 #modal-content {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 0;
-    box-shadow: none;
-    width:100vw;
-    height:100vh
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100vw;
+  height: 100vh;
 }
 #modal-body {
-    position: absolute;
-    top: 50px;
-    bottom: 0;
-    font-size: 15px;
-    overflow: auto;
-    margin-bottom: 60px;
-    padding: 0 15px 0;
-    width: 100%;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  font-size: 15px;
+  overflow: auto;
+  margin-bottom: 60px;
+  padding: 0 15px 0;
+  width: 100%;
 }
 #modal-footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 60px;
-    padding: 10px;
-    background: #f1f3f5;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px;
+  background: #f1f3f5;
 }
 
+#carouselContainer {
+  width: 400px;
+  height: 300px;
+  box-shadow: 3px 4px 5px 5px;
+  border-radius: 10px;
+}
+#imageCarousel {
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+}
+#carouselVideoContainer {
+  width: 400px;
+  height: 300px;
+  box-shadow: 3px 4px 5px 5px;
+  border-radius: 10px;
+}
+#videoCarousel {
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  z-index: 2;
+  padding-bottom: 15px;
+}
 
-
-
-
+@media (max-width: 490px) {
+  #carouselContainer,
+  #imageCarousel,
+  #carouselVideoContainer,
+  #videoCarousel {
+    width: 300px;
+    height: 200px;
+  }
+}

@@ -40,6 +40,7 @@ import { SignupComponentComponent } from './signup-component/signup-component.co
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { AboutWebsiteComponent } from './about-website/about-website.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { AboutWebsiteComponent } from './about-website/about-website.component';
     LoginComponentComponent,
     AboutMeComponent,
     AboutWebsiteComponent,
+    ErrorPageComponent,
   ],
   imports: [
     CommonModule,

@@ -7,9 +7,9 @@
     "node": " 12.13.0"
   },
   "scripts": {
-    "ng": "ng",
+    "ng": "http-server-spa dist/frontPortafolio index.html $PORT",
 
-    "start":"http-server-spa dist/frontPortafolio index.html $PORT",
+    "start":"ng serve",
 
 
     "build": "ng build",
